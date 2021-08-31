@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container } from "react-bootstrap";
+import { Route, Switch } from "react-router";
+import { ToastContainer } from "react-toastify";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import AddEmployee from "./components/add-employee/AddEmployee.page";
+import Employees from "./components/employees/Employees.page";
+import Header from "./components/common/Header";
+import Home from "./components/home/Home.page";
+import EditEmployee from "./components/edit-employee/EditEmployee.page";
+import Footer from "./components/common/Footer";
+
+const App = () => {
+    return (
+        <Container>
+            <Header />
+            <Switch>
+                <Route path="/employees/add" component={AddEmployee} />
+                <Route path="/employees/:id" component={EditEmployee} />
+                <Route path="/employees" component={Employees} />
+                <Route path="/" component={Home} />
+            </Switch>
+            <Footer />
+            <ToastContainer autoClose={5000} hideProgressBar />
+        </Container>
+    );
+};
 
 export default App;

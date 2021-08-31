@@ -1,0 +1,30 @@
+.btn-reload {
+    width: 200px;
+}
+
+.btn-modify {
+    width: 80px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.container-reload {
+    text-align: center;
+}
+
+.container-modify {
+    text-align: center;
+}
+
+.container-table {
+    display: block;
+    margin: 0 auto;
+}
+
+.container-download {
+    text-align: center;
+}
+
+.text-center {
+    text-align: center;
+}
