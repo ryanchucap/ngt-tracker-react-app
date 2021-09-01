@@ -20,6 +20,12 @@ class App extends Component {
             <Container>
                 {this.props.user === "admin" ? (
                     <>
+                        <h1>
+                            {process.env.REACT_APP_NODE_ENV
+                                ? process.env.REACT_APP_NODE_ENV
+                                : "GONE"}
+                        </h1>
+                        <h1>Hello World</h1>
                         <AdminHeader />
                         <Switch>
                             <Route
