@@ -1,13 +1,13 @@
 {
     "employees": [
         {
-            "id": 0,
             "firstName": "Workman",
             "lastName": "Foster",
             "startDate": "2016-10-26",
             "track": ".net",
             "email": "workmanfoster@futuris.com",
-            "phone": "(938) 436-3465"
+            "phone": "(938) 436-3465",
+            "id": 0
         },
         {
             "id": 1,
@@ -118,13 +118,13 @@
             "phone": "(892) 487-2799"
         },
         {
-            "id": 13,
             "firstName": "Alexandria",
             "lastName": "Beck",
-            "startDate": "2015-04-06",
+            "startDate": "2015-03-17",
             "track": ".net",
             "email": "alexandriabeck@futuris.com",
-            "phone": "(930) 580-2157"
+            "phone": "(930) 580-2157",
+            "id": 13
         },
         {
             "id": 14,
@@ -604,15 +604,6 @@
             "phone": "(918) 472-2481"
         },
         {
-            "id": 67,
-            "firstName": "Erica",
-            "lastName": "Ashley",
-            "startDate": "2021-07-12",
-            "track": "aws",
-            "email": "ericaashley@futuris.com",
-            "phone": "(989) 411-3082"
-        },
-        {
             "id": 68,
             "firstName": "Paul",
             "lastName": "Hays",
@@ -1088,15 +1079,6 @@
             "track": "react",
             "email": "billieaustin@futuris.com",
             "phone": "(850) 416-2536"
-        },
-        {
-            "id": 121,
-            "firstName": "Adkins",
-            "lastName": "Griffin",
-            "startDate": "2014-12-01",
-            "track": "react",
-            "email": "adkinsgriffin@futuris.com",
-            "phone": "(813) 589-3815"
         },
         {
             "id": 122,

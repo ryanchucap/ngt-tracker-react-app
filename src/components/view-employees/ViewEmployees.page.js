@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import EmployeeList from "./EmployeeList";
+import { connect } from "react-redux";
+import { toast } from "react-toastify";
+import { bindActionCreators } from "redux";
 import * as apiTypes from "../../api/apiTypes";
 import * as employeeActions from "../../redux/actions/employeeActions";
 import * as fileActions from "../../redux/actions/fileActions";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-
+import EmployeeList from "./EmployeeList";
 import "./employees.css";
-import { toast } from "react-toastify";
 
-class Employees extends Component {
+class ViewEmployees extends Component {
     state = { error: "" };
 
     componentDidMount() {
@@ -94,4 +93,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Employees);
+export default connect(mapStateToProps, mapDispatchToProps)(ViewEmployees);

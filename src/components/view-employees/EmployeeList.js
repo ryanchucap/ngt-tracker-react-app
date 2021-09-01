@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router";
 import { toast } from "react-toastify";
 import { bindActionCreators } from "redux";
+import FIELDS from "../../db-structure/fields";
 import * as employeeActions from "../../redux/actions/employeeActions";
 import Pagination from "../common/Pagination";
 import SortButton from "../common/SortButton";
@@ -21,7 +22,7 @@ const EmployeeList = ({ employees, actions }) => {
         order: 1,
     });
 
-    const entriesPerPage = 10;
+    const entriesPerPage = 15;
 
     const handleEdit = (id) => {
         history.push("/employees/" + id);
@@ -48,22 +49,10 @@ const EmployeeList = ({ employees, actions }) => {
     };
 
     const applySort = (employeeList, field, order) => {
-        const comparators = {
-            name: (a, b) => {
-                const byLast = a.lastName.localeCompare(b.lastName);
-                return byLast !== 0
-                    ? byLast
-                    : a.firstName.localeCompare(b.firstName);
-            },
-            startDate: (a, b) => {
-                let dA = Date.parse(a.startDate, "MM-dd-yyyy");
-                let dB = Date.parse(b.startDate, "MM-dd-yyyy");
-                return dA < dB ? -1 : dA > dB ? 1 : 0;
-            },
-        };
-        if (employeeList.length > 0 && field && comparators[field]) {
+        if (employeeList.length > 0 && field) {
             return employeeList.sort(
-                (a, b) => comparators[field](a, b) * order
+                (a, b) =>
+                    field.comparator(a[field.colName], b[field.colName]) * order
             );
         } else {
             return employeeList;
@@ -74,27 +63,23 @@ const EmployeeList = ({ employees, actions }) => {
         <>
             <table className="table table-hover table-scrollable">
                 <thead>
-                    <tr className="h3">
-                        <th>
-                            Name
-                            <SortButton
-                                onChange={(order) => handleSort("name", order)}
-                                deselected={sortMethod.field !== "name"}
-                            />
-                        </th>
-                        <th>
-                            Start Date
-                            <SortButton
-                                onChange={(order) =>
-                                    handleSort("startDate", order)
-                                }
-                                deselected={sortMethod.field !== "startDate"}
-                            />
-                        </th>
-                        <th>Track</th>
-                        <th>Email</th>
-                        <th>Phone</th>
+                    <tr className="h4">
                         <th className="text-center">Modify</th>
+                        {FIELDS.map((f) => (
+                            <th key={f.colName}>
+                                {f.colTitle}
+                                {f.comparator ? (
+                                    <SortButton
+                                        onChange={(order) =>
+                                            handleSort(f, order)
+                                        }
+                                        deselected={sortMethod.field !== f}
+                                    />
+                                ) : (
+                                    <></>
+                                )}
+                            </th>
+                        ))}
                     </tr>
                 </thead>
                 <tbody>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { matchPath, useHistory, useLocation } from "react-router";
-import EmployeeForm from "../common/forms/EmployeeForm";
+import EmployeeForm from "../forms/EmployeeForm";
 
 import "./edit-employee.css";
 
@@ -35,7 +35,10 @@ const EditEmployee = ({ employees }) => {
         <>
             {employee ? (
                 <div className="container-form">
-                    <EmployeeForm values={employee} />
+                    <EmployeeForm
+                        values={employee}
+                        afterSubmit={() => history.push("/employees")}
+                    />
                 </div>
             ) : (
                 <></>

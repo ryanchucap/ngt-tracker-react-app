@@ -15,6 +15,9 @@ export const DOWNLOAD_FILE_FAILURE = "DOWNLOAD_FILE_SUCCESS";
 export const BEGIN_API_CALL = "BEGIN_API_CALL";
 export const CLEAR_EMPLOYEES = "CLEAR_EMPLOYEES";
 
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+
 const _SUCCESS = "_SUCCESS";
 const _FAILURE = "_FAILURE";
 

@@ -7,13 +7,16 @@ export function clearEmployees() {
     return { type: types.CLEAR_EMPLOYEES };
 }
 
-export function loadEmployees() {
+export function loadEmployees(id) {
     return (dispatch) => {
         dispatch(beginApiCall(apiTypes.LOAD_EMPLOYEES));
         return employeeApi
-            .getEmployees()
+            .getEmployees(id)
             .then((employees) => {
-                dispatch({ type: types.LOAD_EMPLOYEES_SUCCESS, employees });
+                dispatch({
+                    type: types.LOAD_EMPLOYEES_SUCCESS,
+                    employees: id ? [employees] : employees,
+                });
             })
             .catch((error) => {
                 dispatch({ type: types.LOAD_EMPLOYEES_FAILURE });

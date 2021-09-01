@@ -1,23 +1,11 @@
 import React from "react";
+import FIELDS from "../../db-structure/fields";
 
 import "./employees.css";
 
 const EmployeeEntry = ({ employee, handleDelete, handleEdit }) => {
-    const d = new Date(employee.startDate);
-
     return (
         <tr>
-            <td>{employee.lastName + ", " + employee.firstName}</td>
-            <td>
-                {d.toLocaleDateString("en-US", {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                })}
-            </td>
-            <td>{employee.track}</td>
-            <td>{employee.email}</td>
-            <td>{employee.phone}</td>
             <td className="container-modify">
                 <button
                     className="btn btn-warning btn-modify"
@@ -32,6 +20,13 @@ const EmployeeEntry = ({ employee, handleDelete, handleEdit }) => {
                     DELETE
                 </button>
             </td>
+            {FIELDS.map((f) => (
+                <td key={f.colName}>
+                    {f.formatter
+                        ? f.formatter(employee[f.colName])
+                        : employee[f.colName]}
+                </td>
+            ))}
         </tr>
     );
 };

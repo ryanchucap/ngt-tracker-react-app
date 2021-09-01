@@ -5,9 +5,9 @@ import { toast } from "react-toastify";
 import { bindActionCreators } from "redux";
 import * as fileActions from "../../redux/actions/fileActions";
 
-import "./home.css";
+import "./admin-home.css";
 
-const Home = (props) => {
+const AdminHome = (props) => {
     const history = useHistory();
     const [fileName, setFileName] = useState("");
     const [file, setFile] = useState();
@@ -48,31 +48,33 @@ const Home = (props) => {
     };
 
     return (
-        <form encType="multipart/form-data" onSubmit={handleSubmit}>
-            <div className="form-group">
-                <label htmlFor="fileName">Upload An Excel File:</label>
-                <input
-                    name="fileName"
-                    type="file"
-                    accept=".xlsx"
-                    className="form-control"
-                    value={fileName}
-                    onChange={handleChange}
-                />
-                {error && fileName ? (
-                    <small className="text-danger">{error}</small>
-                ) : (
-                    <></>
-                )}
-            </div>
-            <button
-                className="btn btn-primary btn-submit"
-                disabled={error || !fileName}
-                type="submit"
-            >
-                Upload
-            </button>
-        </form>
+        <>
+            <form encType="multipart/form-data" onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="fileName">Upload An Excel File:</label>
+                    <input
+                        name="fileName"
+                        type="file"
+                        accept=".xlsx"
+                        className="form-control"
+                        value={fileName}
+                        onChange={handleChange}
+                    />
+                    {error && fileName ? (
+                        <small className="text-danger">{error}</small>
+                    ) : (
+                        <></>
+                    )}
+                </div>
+                <button
+                    className="btn btn-primary btn-submit"
+                    disabled={error || !fileName}
+                    type="submit"
+                >
+                    Upload
+                </button>
+            </form>
+        </>
     );
 };
 
@@ -90,4 +92,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminHome);

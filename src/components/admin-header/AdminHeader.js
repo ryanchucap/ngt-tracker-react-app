@@ -1,11 +1,16 @@
 import React from "react";
-import { Link, matchPath, useLocation } from "react-router-dom";
 
 import { connect } from "react-redux";
 import * as apiTypes from "../../api/apiTypes";
-import Loading from "./Loading";
 
-const Header = (props) => {
+import Title from "../common/Title";
+import { bindActionCreators } from "redux";
+import * as loginActions from "../../redux/actions/loginActions";
+import * as authUtils from "../../auth/authUtils";
+import ApiLoader from "../common/ApiLoader";
+import NavButton from "../common/NavButton";
+
+const AdminHeader = (props) => {
     const loadingMessage = {
         [apiTypes.DELETE_EMPLOYEE]: "Deleting Employee...",
         [apiTypes.LOAD_EMPLOYEES]: "Loading Employees...",
@@ -17,7 +22,7 @@ const Header = (props) => {
 
     return (
         <div style={{ textAlign: "center" }}>
-            <h1 style={{ fontSize: "75px" }}>NGT Tracker Service</h1>
+            <Title />
             <hr />
             <nav>
                 <NavButton path="/" exact label="Home" />
@@ -33,6 +38,18 @@ const Header = (props) => {
                     label="Add Employee"
                     disabled={!props.uploaded}
                 />
+                <button
+                    className="btn btn-lg btn-secondary"
+                    onClick={authUtils.logout}
+                    style={{
+                        width: "200px",
+                        marginRight: "5px",
+                        marginLeft: "5px",
+                        float: "right",
+                    }}
+                >
+                    Logout
+                </button>
             </nav>
             <hr />
             {Object.keys(loadingMessage).map((key, i) => (
@@ -47,59 +64,20 @@ const Header = (props) => {
     );
 };
 
-const ApiLoader = ({ apiStatus, apiName, message }) => {
-    return (
-        <>
-            {apiStatus.indexOf(apiName) > -1 ? (
-                <>
-                    <Loading message={message} />
-                    <hr />
-                </>
-            ) : (
-                <></>
-            )}
-        </>
-    );
-};
-
-const NavButton = (props) => {
-    const location = useLocation();
-    const inactiveClass = "btn btn-lg btn-info";
-    const activeClass = "btn btn-lg btn-primary";
-
-    return (
-        <Link
-            to={props.path}
-            exact={props.exact ? "true" : "false"}
-            style={props.disabled ? { pointerEvents: "none" } : {}}
-        >
-            <button
-                className={
-                    matchPath(location.pathname, {
-                        path: props.path,
-                        exact: props.exact ? "true" : "false",
-                    })
-                        ? activeClass
-                        : inactiveClass
-                }
-                style={{
-                    width: "200px",
-                    marginRight: "5px",
-                    marginLeft: "5px",
-                }}
-                disabled={props.disabled}
-            >
-                {props.label}
-            </button>
-        </Link>
-    );
-};
-
 const mapStateToProps = (state, ownProps) => {
     return {
         apiStatus: state.apiStatus,
         uploaded: state.file.uploaded,
+        user: state.login,
     };
 };
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actions: {
+            logout: bindActionCreators(loginActions.logout, dispatch),
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminHeader);

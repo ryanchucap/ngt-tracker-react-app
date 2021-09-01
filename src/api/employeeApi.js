@@ -2,10 +2,10 @@ import axios from "axios";
 
 const baseUrl = process.env.REACT_APP_API_URL + "employees/";
 
-export function getEmployees() {
+export function getEmployees(id) {
     return new Promise((resolve, reject) => {
         axios
-            .get(baseUrl)
+            .get(baseUrl + (id ? id : ""))
             .then((response) => resolve(response.data))
             .catch((error) => reject(error));
     });

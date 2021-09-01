@@ -6,7 +6,7 @@ const GenericForm = ({ fields, values, onSubmit, onFailure }) => {
     const initializeObject = (fields, fillValue = "") => {
         let result = {};
         for (let f of fields) {
-            result = { ...result, [f.name]: fillValue };
+            result = { ...result, [f.colName]: fillValue };
         }
         return result;
     };
@@ -14,10 +14,10 @@ const GenericForm = ({ fields, values, onSubmit, onFailure }) => {
     const initializeResult = (fields, values) => {
         let result = {};
         for (let f of fields) {
-            if (values[f.name]) {
-                result = { ...result, [f.name]: values[f.name] };
+            if (values[f.colName]) {
+                result = { ...result, [f.colName]: values[f.colName] };
             } else {
-                result = { ...result, [f.name]: "" };
+                result = { ...result, [f.colName]: "" };
             }
         }
         return result;
@@ -51,15 +51,15 @@ const GenericForm = ({ fields, values, onSubmit, onFailure }) => {
         let newError = initializeObject(fields);
         let isValid = true;
         for (let f of fields) {
-            if (t[f.name]) {
-                if (f.isRequired && result[f.name].length === 0) {
-                    newError[f.name] = "*Required Field";
+            if (t[f.colName]) {
+                if (f.isRequired && result[f.colName].length === 0) {
+                    newError[f.colName] = "*Required Field";
                     isValid = false;
                 } else if (f.isValid) {
-                    let { valid, message } = f.isValid(result[f.name]);
+                    let { valid, message } = f.isValid(result[f.colName]);
 
                     if (!valid) {
-                        newError[f.name] = message;
+                        newError[f.colName] = message;
                         isValid = false;
                     }
                 }
@@ -76,9 +76,9 @@ const GenericForm = ({ fields, values, onSubmit, onFailure }) => {
             {fields.map((f, i) => (
                 <InputGroup
                     {...f}
-                    value={result[f.name]}
+                    value={result[f.colName]}
                     onChange={(event) => handleChange(f, event)}
-                    error={error[f.name]}
+                    error={error[f.colName]}
                     key={i}
                 />
             ))}
@@ -94,9 +94,9 @@ const GenericForm = ({ fields, values, onSubmit, onFailure }) => {
 };
 
 const InputGroup = ({
-    name,
+    colName,
     type,
-    label,
+    formLabel,
     placeholder,
     value,
     onChange,
@@ -104,12 +104,12 @@ const InputGroup = ({
 }) => {
     return (
         <div className="form-group generic-input-group">
-            <label htmlFor={name} style={{ fontSize: "24px" }}>
-                {label}
+            <label htmlFor={colName} style={{ fontSize: "24px" }}>
+                {formLabel}
             </label>
             <input
                 type={type || "text"}
-                name={name}
+                name={colName}
                 className="form-control"
                 placeholder={placeholder != null ? placeholder : ""}
                 value={value}
