@@ -28,3 +28,13 @@
 .text-center {
     text-align: center;
 }
+
+.table-scrollable {
+    display: block;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+}

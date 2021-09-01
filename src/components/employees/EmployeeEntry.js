@@ -3,7 +3,7 @@ import React from "react";
 import "./employees.css";
 
 const EmployeeEntry = ({ employee, handleDelete, handleEdit }) => {
-    const d = new Date(employee.joinDate);
+    const d = new Date(employee.startDate);
 
     return (
         <tr>

@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import * as employeeActions from "../../redux/actions/employeeActions";
 import Pagination from "../common/Pagination";
 import SortButton from "../common/SortButton";
-import Filter from "../filter/Filter";
+//import Filter from "../filter/Filter";
 
 import EmployeeEntry from "./EmployeeEntry";
 
@@ -55,9 +55,9 @@ const EmployeeList = ({ employees, actions }) => {
                     ? byLast
                     : a.firstName.localeCompare(b.firstName);
             },
-            joinDate: (a, b) => {
-                let dA = Date.parse(a.joinDate, "MM-dd-yyyy");
-                let dB = Date.parse(b.joinDate, "MM-dd-yyyy");
+            startDate: (a, b) => {
+                let dA = Date.parse(a.startDate, "MM-dd-yyyy");
+                let dB = Date.parse(b.startDate, "MM-dd-yyyy");
                 return dA < dB ? -1 : dA > dB ? 1 : 0;
             },
         };
@@ -72,8 +72,7 @@ const EmployeeList = ({ employees, actions }) => {
 
     return (
         <>
-            <Filter />
-            <table className="table table-hover">
+            <table className="table table-hover table-scrollable">
                 <thead>
                     <tr className="h3">
                         <th>
@@ -84,12 +83,12 @@ const EmployeeList = ({ employees, actions }) => {
                             />
                         </th>
                         <th>
-                            Join Date
+                            Start Date
                             <SortButton
                                 onChange={(order) =>
-                                    handleSort("joinDate", order)
+                                    handleSort("startDate", order)
                                 }
-                                deselected={sortMethod.field !== "joinDate"}
+                                deselected={sortMethod.field !== "startDate"}
                             />
                         </th>
                         <th>Track</th>

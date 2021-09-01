@@ -23,9 +23,9 @@ const EmployeeForm = ({ values, actions }) => {
         isRequired: true,
     };
 
-    const joinDate = {
-        name: "joinDate",
-        label: "Join Date:",
+    const startDate = {
+        name: "startDate",
+        label: "Start Date:",
         type: "date",
         isRequired: true,
         isValid: (value) => {
@@ -35,7 +35,7 @@ const EmployeeForm = ({ values, actions }) => {
                 return {
                     valid: false,
                     message:
-                        "Join date must be on or before " +
+                        "Start date must be on or before " +
                         now.toLocaleDateString(),
                 };
             } else {
@@ -107,7 +107,7 @@ const EmployeeForm = ({ values, actions }) => {
     return (
         <div className="employee-form">
             <GenericForm
-                fields={[firstName, lastName, joinDate, track, email, phone]}
+                fields={[firstName, lastName, startDate, track, email, phone]}
                 values={values}
                 onSubmit={onSubmit}
                 onFailure={onFailure}
