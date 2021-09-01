@@ -1,13 +1,11 @@
 import React from "react";
-import GenericForm from "./GenericForm";
+import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
 import * as employeeActions from "../../redux/actions/employeeActions";
+import GenericForm from "./GenericForm";
 
-import FIELDS from "../../db-structure/fields";
-
-const EmployeeForm = ({ values, actions, afterSubmit }) => {
+const EmployeeForm = ({ fields, values, actions, afterSubmit }) => {
     const onSubmit = (event, result) => {
         let employee = result;
         let isUpdate = false;
@@ -39,7 +37,7 @@ const EmployeeForm = ({ values, actions, afterSubmit }) => {
     return (
         <div className="employee-form">
             <GenericForm
-                fields={FIELDS}
+                fields={fields}
                 values={values}
                 onSubmit={onSubmit}
                 onFailure={onFailure}
@@ -49,7 +47,18 @@ const EmployeeForm = ({ values, actions, afterSubmit }) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-    return {};
+    let keys = null;
+    let fields = null;
+    if (state.employees.length > 0) {
+        keys = Object.keys(state.employees[0]);
+        fields = [];
+        for (let k of keys) {
+            if (k !== "id") {
+                fields.push({ colName: k, formLabel: k, isRequired: true });
+            }
+        }
+    }
+    return { fields };
 };
 
 const mapDispatchToProps = (dispatch) => {

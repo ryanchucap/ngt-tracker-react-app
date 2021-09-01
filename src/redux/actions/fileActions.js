@@ -1,6 +1,6 @@
-import * as types from "./actionTypes";
 import * as apiTypes from "../../api/apiTypes";
 import * as fileApi from "../../api/fileApi";
+import * as types from "./actionTypes";
 import { beginApiCall } from "./apiStatusActions";
 import { clearEmployees } from "./employeeActions";
 

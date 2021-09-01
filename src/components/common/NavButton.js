@@ -1,6 +1,5 @@
 import React from "react";
-
-import { useLocation, matchPath } from "react-router";
+import { matchPath, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
 const NavButton = (props) => {

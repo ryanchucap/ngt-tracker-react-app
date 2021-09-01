@@ -1,13 +1,11 @@
 import React from "react";
-
 import { connect } from "react-redux";
-import * as apiTypes from "../../api/apiTypes";
-
-import Title from "../common/Title";
 import { bindActionCreators } from "redux";
-import * as loginActions from "../../redux/actions/loginActions";
+import * as apiTypes from "../../api/apiTypes";
 import * as authUtils from "../../auth/authUtils";
+import * as loginActions from "../../redux/actions/loginActions";
 import ApiLoader from "../common/ApiLoader";
+import Title from "../common/Title";
 
 const UserHeader = (props) => {
     const loadingMessage = {

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-
-import Title from "../common/Title";
-import * as loginActions from "../../redux/actions/loginActions";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Redirect, useHistory } from "react-router";
 import { toast } from "react-toastify";
-
+import { bindActionCreators } from "redux";
 import * as authUtils from "../../auth/authUtils";
+import * as loginActions from "../../redux/actions/loginActions";
+import Title from "../common/Title";
 
 const Login = (props) => {
     const [credentials, setCredentials] = useState({});

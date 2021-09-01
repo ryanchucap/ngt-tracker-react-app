@@ -3,14 +3,10 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router";
 import { toast } from "react-toastify";
 import { bindActionCreators } from "redux";
-import FIELDS from "../../db-structure/fields";
 import * as employeeActions from "../../redux/actions/employeeActions";
 import Pagination from "../common/Pagination";
-import SortButton from "../common/SortButton";
 //import Filter from "../filter/Filter";
-
 import EmployeeEntry from "./EmployeeEntry";
-
 import "./employees.css";
 
 const EmployeeList = ({ employees, actions }) => {
@@ -65,21 +61,9 @@ const EmployeeList = ({ employees, actions }) => {
                 <thead>
                     <tr className="h4">
                         <th className="text-center">Modify</th>
-                        {FIELDS.map((f) => (
-                            <th key={f.colName}>
-                                {f.colTitle}
-                                {f.comparator ? (
-                                    <SortButton
-                                        onChange={(order) =>
-                                            handleSort(f, order)
-                                        }
-                                        deselected={sortMethod.field !== f}
-                                    />
-                                ) : (
-                                    <></>
-                                )}
-                            </th>
-                        ))}
+                        {Object.keys(employees[0]).map(
+                            (f) => f !== "id" && <th key={f}>{f}</th>
+                        )}
                     </tr>
                 </thead>
                 <tbody>

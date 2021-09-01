@@ -1,6 +1,6 @@
-import * as types from "./actionTypes";
 import * as apiTypes from "../../api/apiTypes";
 import * as employeeApi from "../../api/employeeApi";
+import * as types from "./actionTypes";
 import { beginApiCall } from "./apiStatusActions";
 
 export function clearEmployees() {

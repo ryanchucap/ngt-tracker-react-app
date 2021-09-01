@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { BsFillCaretUpFill, BsFillCaretDownFill } from "react-icons/bs";
-
+import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 import "./common.css";
 
 const SortButton = (props) => {

@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import * as apiTypes from "../../api/apiTypes";
 import * as employeeActions from "../../redux/actions/employeeActions";
-
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-
 import EmployeeForm from "../forms/EmployeeForm";
+import "./home.css";
 
 class UserHome extends Component {
     state = { error: "" };

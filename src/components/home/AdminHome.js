@@ -4,8 +4,7 @@ import { useHistory } from "react-router";
 import { toast } from "react-toastify";
 import { bindActionCreators } from "redux";
 import * as fileActions from "../../redux/actions/fileActions";
-
-import "./admin-home.css";
+import "./home.css";
 
 const AdminHome = (props) => {
     const history = useHistory();

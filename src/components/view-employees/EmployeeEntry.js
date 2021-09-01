@@ -1,6 +1,4 @@
 import React from "react";
-import FIELDS from "../../db-structure/fields";
-
 import "./employees.css";
 
 const EmployeeEntry = ({ employee, handleDelete, handleEdit }) => {
@@ -20,13 +18,9 @@ const EmployeeEntry = ({ employee, handleDelete, handleEdit }) => {
                     DELETE
                 </button>
             </td>
-            {FIELDS.map((f) => (
-                <td key={f.colName}>
-                    {f.formatter
-                        ? f.formatter(employee[f.colName])
-                        : employee[f.colName]}
-                </td>
-            ))}
+            {Object.keys(employee).map(
+                (f) => f !== "id" && <td key={f}>{employee[f]}</td>
+            )}
         </tr>
     );
 };
