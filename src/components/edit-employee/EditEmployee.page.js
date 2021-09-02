@@ -31,7 +31,7 @@ const EditEmployee = ({ employees }) => {
                 history.push("/employees");
             }
         }
-    }, [history, employees]);
+    }, [history, location, employees]);
 
     // Use employee as initial value of EmployeeForm if one is selected
     // After editing, send back to /employees
