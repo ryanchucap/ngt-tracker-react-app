@@ -60,23 +60,17 @@ const EmployeeList = ({ employees, actions }) => {
 
     return (
         <>
+            <input
+                className="form-control"
+                placeholder="Enter search term"
+                onChange={handleSearchChange}
+                style={{
+                    marginTop: "10px",
+                    width: "400px",
+                }}
+            />
             <table className="table table-hover table-scrollable">
                 <thead>
-                    <tr>
-                        <td colspan="100%">
-                            <div style={{ float: "right" }}>
-                                <input
-                                    className="form-control"
-                                    placeholder="Enter search term"
-                                    onChange={handleSearchChange}
-                                    style={{
-                                        marginTop: "10px",
-                                        width: "400px",
-                                    }}
-                                />
-                            </div>
-                        </td>
-                    </tr>
                     <tr className="h4">
                         <th className="text-center">Modify</th>
                         {Object.keys(employees[0]).map(
