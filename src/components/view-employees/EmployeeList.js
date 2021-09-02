@@ -13,6 +13,7 @@ const EmployeeList = ({ employees, actions }) => {
     const history = useHistory();
 
     const [page, setPage] = useState(1);
+    const [search, setSearch] = useState("");
 
     const entriesPerPage = 15;
 
@@ -33,10 +34,49 @@ const EmployeeList = ({ employees, actions }) => {
             );
     };
 
+    const handleSearchChange = (event) => {
+        setSearch(event.target.value);
+    };
+
+    const searchFilter = (emp) => {
+        if (search === "") {
+            return true;
+        } else {
+            for (let k of Object.keys(emp)) {
+                if (
+                    emp[k]
+                        .toString()
+                        .toLowerCase()
+                        .includes(search.toLowerCase())
+                ) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    };
+
+    const employeesFiltered = employees.filter(searchFilter);
+
     return (
         <>
             <table className="table table-hover table-scrollable">
                 <thead>
+                    <tr>
+                        <td colspan="100%">
+                            <div style={{ float: "right" }}>
+                                <input
+                                    className="form-control"
+                                    placeholder="Enter search term"
+                                    onChange={handleSearchChange}
+                                    style={{
+                                        marginTop: "10px",
+                                        width: "400px",
+                                    }}
+                                />
+                            </div>
+                        </td>
+                    </tr>
                     <tr className="h4">
                         <th className="text-center">Modify</th>
                         {Object.keys(employees[0]).map(
@@ -45,7 +85,7 @@ const EmployeeList = ({ employees, actions }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {employees
+                    {employeesFiltered
                         .slice(
                             (page - 1) * entriesPerPage,
                             page * entriesPerPage
@@ -62,14 +102,14 @@ const EmployeeList = ({ employees, actions }) => {
             </table>
             <Pagination
                 page={page}
-                numEntries={employees.length}
+                numEntries={employeesFiltered.length}
                 entriesPerPage={entriesPerPage}
                 onChange={(p) => setPage(p)}
             />
             <div>
                 Showing {(page - 1) * entriesPerPage + 1} -{" "}
-                {Math.min(page * entriesPerPage, employees.length)} of{" "}
-                {employees.length} Employees
+                {Math.min(page * entriesPerPage, employeesFiltered.length)} of{" "}
+                {employeesFiltered.length} Employees
             </div>
         </>
     );
