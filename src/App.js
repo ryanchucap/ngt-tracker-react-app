@@ -46,6 +46,11 @@ class App extends Component {
                     </>
                 ) : (
                     <Switch>
+                        {/* if not logged in, only available route is /login.
+                         * If attempting to access another route, first
+                         * check localStorage for login data. If nothing is
+                         * there, then redirect
+                         */}
                         <Route path="/login" component={Login} />
                         {authUtils.checkSession() ? (
                             <></>

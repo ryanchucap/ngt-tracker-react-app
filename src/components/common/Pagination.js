@@ -2,6 +2,9 @@ import React from "react";
 import "./common.css";
 
 const Pagination = (props) => {
+    // TODO: clean this mess up
+    // Goal is to display a fixed number (currently 7) of buttons at the bottom
+    // This depends on if ellipses buttons need to be displayed on either end
     const numPages = Math.ceil(props.numEntries / props.entriesPerPage);
     const pageStartDisplay =
         numPages <= 7 ? 1 : Math.min(Math.max(props.page - 3, 1), numPages - 6);

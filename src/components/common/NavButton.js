@@ -7,6 +7,9 @@ const NavButton = (props) => {
     const inactiveClass = "btn btn-lg btn-info";
     const activeClass = "btn btn-lg btn-primary";
 
+    // to disable Link, we need to disable pointer events
+    // matchPath is used to determine current url, and set the
+    // className of the button accordingly
     return (
         <Link
             to={props.path}

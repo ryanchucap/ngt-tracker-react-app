@@ -1,14 +1,23 @@
 const FIELDS = [
     {
-        colName: "firstName", // column name of underlying database
-        colTitle: "First Name", // column header for table
-        formLabel: "First Name:", // form label (above input box)
-        type: "text", // form input box type, can be omitted (text is default)
-        placeholder: "Enter first name", // form input box placeholder, can be omitted
-        isRequired: true, // form input box isRequired error checking, can be omitted (false is default)
-        comparator: (a, b) => b.localeCompare(a), // sorts table values, can be omitted
-        formatter: (value) => value, // formats table values, can be omitted
-        isValid: (value) => ({ valid: true, message: "" }), // additional form validation, can be omitted
+        // column name of underlying database
+        colName: "firstName",
+        // column header for table
+        colTitle: "First Name",
+        // form label (above input box)
+        formLabel: "First Name:",
+        // form input box type, can be omitted (text is default)
+        type: "text",
+        // form input box placeholder, can be omitted (no default)
+        placeholder: "Enter first name",
+        // form input box error checking, can be omitted (false is default)
+        isRequired: true,
+        // sorts table values, can be omitted (no default)
+        comparator: (a, b) => b.localeCompare(a),
+        // formats table values, can be omitted (no default)
+        formatter: (value) => value,
+        // additional form validation, can be omitted (no default)
+        isValid: (value) => ({ valid: true, message: "" }),
     },
 
     {

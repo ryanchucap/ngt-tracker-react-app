@@ -9,11 +9,13 @@ const EmployeeForm = ({ fields, values, actions, afterSubmit }) => {
     const onSubmit = (event, result) => {
         let employee = result;
         let isUpdate = false;
+        // check if employee object has an id already
         if (values.id !== undefined) {
             employee = { ...employee, id: values.id };
             isUpdate = true;
         }
 
+        // make call to saveEmployee (it will figure out if op is add/update)
         actions
             .saveEmployee(employee)
             .then(() => {

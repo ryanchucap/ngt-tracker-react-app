@@ -7,6 +7,9 @@ export function clearEmployees() {
     return { type: types.CLEAR_EMPLOYEES };
 }
 
+// thunk middleware allows return of functions
+// this allows our action to fully manage redux state
+// depending on success/failure of api call within each action
 export function loadEmployees(id) {
     return (dispatch) => {
         dispatch(beginApiCall(apiTypes.LOAD_EMPLOYEES));
@@ -15,6 +18,8 @@ export function loadEmployees(id) {
             .then((employees) => {
                 dispatch({
                     type: types.LOAD_EMPLOYEES_SUCCESS,
+                    // if id was provided, we are getting only a single employee
+                    // wrap it in an array for type-consistency in redux store
                     employees: id ? [employees] : employees,
                 });
             })

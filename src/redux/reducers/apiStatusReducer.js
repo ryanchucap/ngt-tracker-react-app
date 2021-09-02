@@ -17,6 +17,7 @@ export default function apiStatusReducer(
                     newState.splice(index, 1);
                     return newState;
                 } else {
+                    // This line should never be reached
                     console.log("Error: Api call ended without being logged.");
                     return state;
                 }

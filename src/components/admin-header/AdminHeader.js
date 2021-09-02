@@ -1,16 +1,16 @@
 import React from "react";
-
 import { connect } from "react-redux";
-import * as apiTypes from "../../api/apiTypes";
-
-import Title from "../common/Title";
 import { bindActionCreators } from "redux";
-import * as loginActions from "../../redux/actions/loginActions";
+import * as apiTypes from "../../api/apiTypes";
 import * as authUtils from "../../auth/authUtils";
+import * as loginActions from "../../redux/actions/loginActions";
 import ApiLoader from "../common/ApiLoader";
 import NavButton from "../common/NavButton";
+import Title from "../common/Title";
 
 const AdminHeader = (props) => {
+    // loading message for each api call -> multiple will display
+    // if multiple api calls are in progress
     const loadingMessage = {
         [apiTypes.DELETE_EMPLOYEE]: "Deleting Employee...",
         [apiTypes.LOAD_EMPLOYEES]: "Loading Employees...",
@@ -20,6 +20,8 @@ const AdminHeader = (props) => {
         [apiTypes.DOWNLOAD_FILE]: "Preparing File...",
     };
 
+    // Title and Navigation Bar, with links disabled
+    // if there is no data available to view (no file uploaded yet)
     return (
         <div style={{ textAlign: "center" }}>
             <Title />
