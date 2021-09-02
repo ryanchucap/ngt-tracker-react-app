@@ -27,8 +27,7 @@ const NavButton = (props) => {
                 }
                 style={{
                     width: "200px",
-                    marginRight: "5px",
-                    marginLeft: "5px",
+                    margin: "10px 10px",
                 }}
                 disabled={props.disabled}
             >

@@ -45,9 +45,7 @@ const AdminHeader = (props) => {
                     onClick={authUtils.logout}
                     style={{
                         width: "200px",
-                        marginRight: "5px",
-                        marginLeft: "5px",
-                        float: "right",
+                        margin: "10px 10px",
                     }}
                 >
                     Logout
