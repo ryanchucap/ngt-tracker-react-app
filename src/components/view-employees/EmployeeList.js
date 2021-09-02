@@ -13,10 +13,6 @@ const EmployeeList = ({ employees, actions }) => {
     const history = useHistory();
 
     const [page, setPage] = useState(1);
-    const [sortMethod, setSortMethod] = useState({
-        field: null,
-        order: 1,
-    });
 
     const entriesPerPage = 15;
 
@@ -37,24 +33,6 @@ const EmployeeList = ({ employees, actions }) => {
             );
     };
 
-    const handleSort = (field, order) => {
-        if (page !== 1) {
-            setPage(1);
-        }
-        setSortMethod({ field, order });
-    };
-
-    const applySort = (employeeList, field, order) => {
-        if (employeeList.length > 0 && field) {
-            return employeeList.sort(
-                (a, b) =>
-                    field.comparator(a[field.colName], b[field.colName]) * order
-            );
-        } else {
-            return employeeList;
-        }
-    };
-
     return (
         <>
             <table className="table table-hover table-scrollable">
@@ -67,7 +45,7 @@ const EmployeeList = ({ employees, actions }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {applySort(employees, sortMethod.field, sortMethod.order)
+                    {employees
                         .slice(
                             (page - 1) * entriesPerPage,
                             page * entriesPerPage
