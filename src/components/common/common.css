@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap");
+
 .pagcontainer {
     display: flex; /* establish flex container */
     flex-direction: row; /* default value; can be omitted */
@@ -34,4 +36,13 @@
 .container-sort {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.title {
+    font-size: 75px;
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: #1abc9c;
+    font-family: "Playfair Display", serif;
 }

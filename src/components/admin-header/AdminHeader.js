@@ -7,6 +7,7 @@ import * as loginActions from "../../redux/actions/loginActions";
 import ApiLoader from "../common/ApiLoader";
 import NavButton from "../common/NavButton";
 import Title from "../common/Title";
+import useWindowDimensions from "../common/useWindowDimensions";
 
 const AdminHeader = (props) => {
     // loading message for each api call -> multiple will display
@@ -20,6 +21,8 @@ const AdminHeader = (props) => {
         [apiTypes.DOWNLOAD_FILE]: "Preparing File...",
     };
 
+    const { width } = useWindowDimensions();
+
     // Title and Navigation Bar, with links disabled
     // if there is no data available to view (no file uploaded yet)
     return (
@@ -29,36 +32,76 @@ const AdminHeader = (props) => {
             <nav>
                 <table style={{ width: "100%" }}>
                     <tbody>
-                        <tr>
-                            <td style={{ textAlign: "left" }}>
-                                <NavButton path="/" exact label="Home" />
-                                <NavButton
-                                    path="/employees"
-                                    exact
-                                    label="Employees"
-                                    disabled={!props.uploaded}
-                                />
-                                <NavButton
-                                    path="/employees/add"
-                                    exact
-                                    label="Add Employee"
-                                    disabled={!props.uploaded}
-                                />
-                            </td>
-                            <td>
-                                <button
-                                    className="btn btn-lg btn-outline-danger"
-                                    onClick={authUtils.logout}
+                        {width > 1000 ? (
+                            <tr>
+                                <td style={{ width: "fit-content" }}>
+                                    <NavButton path="/" exact label="Home" />
+                                </td>
+                                <td style={{ width: "fit-content" }}>
+                                    <NavButton
+                                        path="/employees"
+                                        exact
+                                        label="Employees"
+                                        disabled={!props.uploaded}
+                                    />
+                                </td>
+                                <td style={{ width: "fit-content" }}>
+                                    <NavButton
+                                        path="/employees/add"
+                                        exact
+                                        label="Add Employee"
+                                        disabled={!props.uploaded}
+                                    />
+                                </td>
+                                <td
                                     style={{
-                                        width: "200px",
-                                        margin: "10px 10px",
-                                        float: "right",
+                                        width: "100%",
+                                        textAlign: "right",
                                     }}
                                 >
-                                    Logout
-                                </button>
-                            </td>
-                        </tr>
+                                    <LogoutButton onLogout={authUtils.logout} />
+                                </td>
+                            </tr>
+                        ) : (
+                            <>
+                                <tr>
+                                    <td style={{ width: "fit-content" }}>
+                                        <NavButton
+                                            path="/"
+                                            exact
+                                            label="Home"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style={{ width: "fit-content" }}>
+                                        <NavButton
+                                            path="/employees"
+                                            exact
+                                            label="Employees"
+                                            disabled={!props.uploaded}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style={{ width: "fit-content" }}>
+                                        <NavButton
+                                            path="/employees/add"
+                                            exact
+                                            label="Add Employee"
+                                            disabled={!props.uploaded}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <LogoutButton
+                                            onLogout={authUtils.logout}
+                                        />
+                                    </td>
+                                </tr>
+                            </>
+                        )}
                     </tbody>
                 </table>
             </nav>
@@ -72,6 +115,21 @@ const AdminHeader = (props) => {
                 />
             ))}
         </div>
+    );
+};
+
+const LogoutButton = ({ onLogout }) => {
+    return (
+        <button
+            className="btn btn-lg btn-outline-danger"
+            onClick={onLogout}
+            style={{
+                width: "200px",
+                margin: "10px 10px",
+            }}
+        >
+            Logout
+        </button>
     );
 };
 
