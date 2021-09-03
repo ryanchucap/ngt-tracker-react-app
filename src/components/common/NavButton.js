@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const NavButton = (props) => {
     const location = useLocation();
-    const inactiveClass = "btn btn-lg btn-info";
+    const inactiveClass = "btn btn-lg btn-outline-primary";
     const activeClass = "btn btn-lg btn-primary";
 
     // to disable Link, we need to disable pointer events

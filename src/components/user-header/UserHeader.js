@@ -19,7 +19,7 @@ const UserHeader = (props) => {
             <hr />
             <div style={{ textAlign: "right" }}>
                 <button
-                    className="btn btn-lg btn-secondary"
+                    className="btn btn-lg btn-outline-danger"
                     onClick={authUtils.logout}
                     style={{
                         width: "200px",

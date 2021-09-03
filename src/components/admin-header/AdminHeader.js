@@ -27,29 +27,40 @@ const AdminHeader = (props) => {
             <Title />
             <hr />
             <nav>
-                <NavButton path="/" exact label="Home" />
-                <NavButton
-                    path="/employees"
-                    exact
-                    label="Employees"
-                    disabled={!props.uploaded}
-                />
-                <NavButton
-                    path="/employees/add"
-                    exact
-                    label="Add Employee"
-                    disabled={!props.uploaded}
-                />
-                <button
-                    className="btn btn-lg btn-secondary"
-                    onClick={authUtils.logout}
-                    style={{
-                        width: "200px",
-                        margin: "10px 10px",
-                    }}
-                >
-                    Logout
-                </button>
+                <table style={{ width: "100%" }}>
+                    <tbody>
+                        <tr>
+                            <td style={{ textAlign: "left" }}>
+                                <NavButton path="/" exact label="Home" />
+                                <NavButton
+                                    path="/employees"
+                                    exact
+                                    label="Employees"
+                                    disabled={!props.uploaded}
+                                />
+                                <NavButton
+                                    path="/employees/add"
+                                    exact
+                                    label="Add Employee"
+                                    disabled={!props.uploaded}
+                                />
+                            </td>
+                            <td>
+                                <button
+                                    className="btn btn-lg btn-outline-danger"
+                                    onClick={authUtils.logout}
+                                    style={{
+                                        width: "200px",
+                                        margin: "10px 10px",
+                                        float: "right",
+                                    }}
+                                >
+                                    Logout
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </nav>
             <hr />
             {Object.keys(loadingMessage).map((key, i) => (
