@@ -1,11 +1,22 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:5000/files";
+const baseUrl = "http://localhost:5000/files/";
+
+const api = axios.create();
+
+api.interceptors.request.use((request) => {
+    console.log("Starting Request", JSON.stringify(request, null, 2));
+    return request;
+});
+
+api.interceptors.response.use((response) => {
+    console.log("Response:", JSON.stringify(response, null, 2));
+    return response;
+});
 
 export function uploadFile(file) {
     return new Promise((resolve, reject) => {
-        axios
-            .post(baseUrl, file)
+        api.post(baseUrl, file)
             .then((response) => {
                 resolve(response);
             })
@@ -17,8 +28,7 @@ export function uploadFile(file) {
 
 export function downloadFile() {
     return new Promise((resolve, reject) => {
-        axios
-            .get(baseUrl + "/testexcel.xlsx", { responseType: "blob" })
+        api.get(baseUrl + "testexcel.xlsx", { responseType: "blob" })
             .then((response) => {
                 resolve(response);
             })

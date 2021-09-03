@@ -5,8 +5,8 @@ import { bindActionCreators } from "redux";
 import * as apiTypes from "../../api/apiTypes";
 import * as employeeActions from "../../redux/actions/employeeActions";
 import * as fileActions from "../../redux/actions/fileActions";
-import EmployeeList from "./EmployeeList";
-import "./employees.css";
+import EmployeeTable from "../employee-table/EmployeeTable";
+import "./view-employees.css";
 
 class ViewEmployees extends Component {
     state = { error: "" };
@@ -63,7 +63,7 @@ class ViewEmployees extends Component {
                                 Download As Excel Document
                             </button>
                         </div>
-                        <EmployeeList />
+                        <EmployeeTable />
                     </div>
                 ) : apiStatus.indexOf(apiTypes.LOAD_EMPLOYEES) > -1 ? (
                     <></>
