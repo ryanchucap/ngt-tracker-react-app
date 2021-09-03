@@ -1,4 +1,4 @@
-@media only screen and (max-width: 1026px) {
+@media only screen and (max-width: 800px) {
     .btn-hide-if-small {
         display: none;
     }
@@ -12,25 +12,33 @@
     width: 50px;
 }
 
+.btn-selected {
+    background-color: rgb(108, 117, 125);
+    color: white;
+}
+
 .btn-hide {
-    display: none;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .pag-container {
     display: inline-block;
 }
 
-table {
-    table-layout: fixed;
+.table-fixed {
     width: 100%;
+    white-space: nowrap;
 }
 
 .td-left {
-    text-align: left;
+    width: fit-content;
 }
 .td-center {
     text-align: center;
+    width: 100%;
 }
 .td-right {
     text-align: right;
+    width: fit-content;
 }

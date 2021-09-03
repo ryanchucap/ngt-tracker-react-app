@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import { toast } from "react-toastify";
 import { bindActionCreators } from "redux";
 import * as employeeActions from "../../redux/actions/employeeActions";
-import Pagination from "../common/Pagination";
+import FlexPagination from "../common/FlexPagination";
 import "./employee-table.css";
 import SearchBar from "./SearchBar";
 import TableBody from "./TableBody";
@@ -100,9 +100,9 @@ const EmployeeList = ({ employees, actions }) => {
             {employeesFiltered.length === 0 ? (
                 <h1 style={{ textAlign: "center" }}>No results.</h1>
             ) : (
-                <>
+                <div>
                     <div className="table-container">
-                        <table>
+                        <table className="table-scrolled">
                             <TableHead
                                 fields={Object.keys(employees[0])}
                                 handleSortChange={handleSortChange}
@@ -119,18 +119,20 @@ const EmployeeList = ({ employees, actions }) => {
                             />
                         </table>
                     </div>
-                    <Pagination
-                        page={page}
-                        numEntries={employeesFiltered.length}
-                        entriesPerPage={entriesPerPage}
-                        onChange={(p) => setPage(p)}
-                    />
-                    <TableFooter
-                        page={page}
-                        entriesPerPage={entriesPerPage}
-                        empList={employeesFiltered}
-                    />
-                </>
+                    <div>
+                        <FlexPagination
+                            page={page}
+                            numEntries={employeesFiltered.length}
+                            entriesPerPage={entriesPerPage}
+                            onChange={(p) => setPage(p)}
+                        />
+                        <TableFooter
+                            page={page}
+                            entriesPerPage={entriesPerPage}
+                            empList={employeesFiltered}
+                        />
+                    </div>
+                </div>
             )}
         </>
     );

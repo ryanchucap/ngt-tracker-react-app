@@ -4,7 +4,7 @@ import "./employee-table.css";
 const EmployeeEntry = ({ employee, handleDelete, handleEdit }) => {
     return (
         <tr>
-            <th className="container-modify">
+            <th className="container-modify cell">
                 <button
                     className="btn btn-warning btn-modify"
                     onClick={handleEdit}
@@ -19,7 +19,12 @@ const EmployeeEntry = ({ employee, handleDelete, handleEdit }) => {
                 </button>
             </th>
             {Object.keys(employee).map(
-                (f) => f !== "id" && <td key={f}>{employee[f]}</td>
+                (f) =>
+                    f !== "id" && (
+                        <td key={f} className="cell">
+                            {employee[f]}
+                        </td>
+                    )
             )}
         </tr>
     );

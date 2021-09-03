@@ -6,13 +6,16 @@ const TableHead = ({ fields, handleSortChange, sortField }) => {
     return (
         <thead>
             <tr className="h4">
-                <th className="text-center" style={{ paddingBottom: "10px" }}>
+                <th
+                    className="text-center cell"
+                    style={{ paddingBottom: "10px" }}
+                >
                     MODIFY
                 </th>
                 {fields
                     .filter((f) => f !== "id")
                     .map((f) => (
-                        <th key={f}>
+                        <th key={f} className="cell">
                             {f.toUpperCase()}
                             <SortButton
                                 onChange={(order) => handleSortChange(f, order)}
