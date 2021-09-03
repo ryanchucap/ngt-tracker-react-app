@@ -27,6 +27,7 @@ export function downloadFile() {
             .downloadFile()
             .then((response) => {
                 dispatch({ type: types.DOWNLOAD_FILE_SUCCESS });
+                return response;
             })
             .catch((error) => {
                 dispatch({ type: types.DOWNLOAD_FILE_FAILURE });

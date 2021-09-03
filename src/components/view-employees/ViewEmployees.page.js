@@ -28,7 +28,19 @@ class ViewEmployees extends Component {
     handleDownload = () => {
         this.props.actions
             .downloadFile()
-            .then(toast.success("File downloaded."))
+            .then((response) => {
+                const blob = new Blob([response.data], {
+                    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                });
+                const href = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = href;
+                link.download = "NGT_Profiles.xlsx";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                toast.success("File downloaded.");
+            })
             .catch((error) =>
                 toast.error("Error downloading file: " + error.message, {
                     autoClose: false,
