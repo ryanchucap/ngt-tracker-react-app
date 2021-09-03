@@ -6,7 +6,6 @@ import * as authUtils from "../../auth/authUtils";
 import * as loginActions from "../../redux/actions/loginActions";
 import ApiLoader from "../common/ApiLoader";
 import NavButton from "../common/NavButton";
-import Title from "../common/Title";
 import useWindowDimensions from "../common/useWindowDimensions";
 
 const AdminHeader = (props) => {
@@ -27,7 +26,6 @@ const AdminHeader = (props) => {
     // if there is no data available to view (no file uploaded yet)
     return (
         <div style={{ textAlign: "center" }}>
-            <Title />
             <hr />
             <nav>
                 <table style={{ width: "100%" }}>

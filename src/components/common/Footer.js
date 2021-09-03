@@ -6,14 +6,27 @@ const Footer = () => {
         <div
             style={{
                 textAlign: "center",
-                paddingBottom: "50px",
-                backgroundColor: "#1abc9c",
-                height: "100%",
+                width: "100%",
+                boxSizing: "border-box!important",
+                marginRight: "auto",
                 fontFamily: "'Playfair Display',serif",
+                position: "relative",
+                bottom: "0",
+                clear: "both",
             }}
         >
             <hr />
-            <h3>Capgemini Inc. | 2021</h3>
+            <h3
+                style={{
+                    backgroundColor: "#1abc9c",
+                    paddingTop: "50px",
+                    paddingBottom: "50px",
+                    width: "100%",
+                    boxSizing: "border-box!important",
+                }}
+            >
+                Capgemini Inc. | 2021
+            </h3>
         </div>
     );
 };

@@ -5,7 +5,6 @@ import * as apiTypes from "../../api/apiTypes";
 import * as authUtils from "../../auth/authUtils";
 import * as loginActions from "../../redux/actions/loginActions";
 import ApiLoader from "../common/ApiLoader";
-import Title from "../common/Title";
 
 const UserHeader = (props) => {
     const loadingMessage = {
@@ -15,7 +14,6 @@ const UserHeader = (props) => {
 
     return (
         <div style={{ textAlign: "center" }}>
-            <Title />
             <hr />
             <div style={{ textAlign: "right" }}>
                 <button
