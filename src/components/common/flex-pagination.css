@@ -1,0 +1,36 @@
+@media only screen and (max-width: 1026px) {
+    .btn-hide-if-small {
+        display: none;
+    }
+}
+
+.btn-named {
+    width: 100px;
+}
+
+.btn-num {
+    width: 50px;
+}
+
+.btn-hide {
+    display: none;
+}
+
+.pag-container {
+    display: inline-block;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.td-left {
+    text-align: left;
+}
+.td-center {
+    text-align: center;
+}
+.td-right {
+    text-align: right;
+}

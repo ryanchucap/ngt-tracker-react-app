@@ -9,10 +9,9 @@ const TableHead = ({ fields, handleSortChange, sortField }) => {
                 <th className="text-center" style={{ paddingBottom: "10px" }}>
                     MODIFY
                 </th>
-                {fields.map((f) =>
-                    f === "id" ? (
-                        <></>
-                    ) : (
+                {fields
+                    .filter((f) => f !== "id")
+                    .map((f) => (
                         <th key={f}>
                             {f.toUpperCase()}
                             <SortButton
@@ -20,8 +19,7 @@ const TableHead = ({ fields, handleSortChange, sortField }) => {
                                 deselected={f !== sortField.field}
                             />
                         </th>
-                    )
-                )}
+                    ))}
             </tr>
         </thead>
     );

@@ -1,7 +1,7 @@
 const initialStore = {
     employees: [],
     apiStatus: [],
-    files: { uploaded: false },
+    files: { uploaded: true },
     login: null,
     employee: null,
 };
