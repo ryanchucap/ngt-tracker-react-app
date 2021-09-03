@@ -56,7 +56,12 @@ const mapStateToProps = (state, ownProps) => {
         fields = [];
         for (let k of keys) {
             if (k !== "id") {
-                fields.push({ colName: k, formLabel: k, isRequired: true });
+                fields.push({
+                    colName: k,
+                    formLabel: k.toUpperCase(),
+                    placeholder: "Enter " + k.toLowerCase(),
+                    isRequired: true,
+                });
             }
         }
     }
