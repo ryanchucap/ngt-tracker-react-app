@@ -74,11 +74,11 @@ table tbody th {
     z-index: 1;
 }
 
-tr:hover td {
+table tbody tr:hover td {
     background: lightgray;
 }
 
-tr:hover th {
+table tbody tr:hover th {
     background: lightgray;
 }
 
