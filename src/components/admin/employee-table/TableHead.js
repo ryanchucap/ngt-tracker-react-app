@@ -1,5 +1,5 @@
 import React from "react";
-import SortButton from "../common/SortButton";
+import SortButton from "../../common/SortButton";
 import "./employee-table.css";
 
 const TableHead = ({ fields, handleSortChange, sortField }) => {

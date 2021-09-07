@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as apiTypes from "../../api/apiTypes";
-import * as employeeActions from "../../redux/actions/employeeActions";
-import EmployeeForm from "../forms/EmployeeForm";
+import * as apiTypes from "../../../api/apiTypes";
+import * as employeeActions from "../../../redux/actions/employeeActions";
+import EmployeeForm from "../../forms/EmployeeForm";
 import "./home.css";
 
-class UserHome extends Component {
+class Home extends Component {
     state = { error: "" };
     id = 0;
     componentDidMount() {
@@ -70,4 +70,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

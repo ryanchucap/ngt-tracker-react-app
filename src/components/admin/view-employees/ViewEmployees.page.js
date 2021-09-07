@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { bindActionCreators } from "redux";
-import * as apiTypes from "../../api/apiTypes";
-import * as employeeActions from "../../redux/actions/employeeActions";
-import * as fileActions from "../../redux/actions/fileActions";
+import * as apiTypes from "../../../api/apiTypes";
+import * as employeeActions from "../../../redux/actions/employeeActions";
+import * as fileActions from "../../../redux/actions/fileActions";
 import EmployeeTable from "../employee-table/EmployeeTable";
 import "./view-employees.css";
 

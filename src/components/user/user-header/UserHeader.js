@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as apiTypes from "../../api/apiTypes";
-import * as authUtils from "../../auth/authUtils";
-import ApiLoader from "../common/ApiLoader";
+import * as apiTypes from "../../../api/apiTypes";
+import * as authUtils from "../../../auth/authUtils";
+import ApiLoader from "../../common/ApiLoader";
 
 const UserHeader = ({ apiStatus }) => {
     const loadingMessage = {

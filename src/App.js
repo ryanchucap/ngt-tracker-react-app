@@ -3,16 +3,11 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router";
 import { ToastContainer } from "react-toastify";
 import * as authUtils from "./auth/authUtils";
-import AddEmployee from "./components/add-employee/AddEmployee.page";
-import AdminHeader from "./components/admin-header/AdminHeader";
+import Admin from "./components/admin/Admin";
 import Footer from "./components/common/Footer";
 import Title from "./components/common/Title";
-import EditEmployee from "./components/edit-employee/EditEmployee.page";
-import AdminHome from "./components/home/AdminHome";
-import UserHome from "./components/home/UserHome";
 import Login from "./components/login/Login.page";
-import UserHeader from "./components/user-header/UserHeader";
-import ViewEmployees from "./components/view-employees/ViewEmployees.page";
+import User from "./components/user/User";
 
 const App = ({ user }) => {
     return (
@@ -21,31 +16,9 @@ const App = ({ user }) => {
                 <Title />
                 <div className="container">
                     {user === "admin" ? (
-                        <>
-                            <AdminHeader />
-                            <Switch>
-                                <Route
-                                    path="/employees/add"
-                                    component={AddEmployee}
-                                />
-                                <Route
-                                    path="/employees/:id"
-                                    component={EditEmployee}
-                                />
-                                <Route
-                                    path="/employees"
-                                    component={ViewEmployees}
-                                />
-                                <Route path="/" component={AdminHome} />
-                            </Switch>
-                        </>
+                        <Admin />
                     ) : user ? (
-                        <>
-                            <UserHeader />
-                            <Switch>
-                                <Route path="/" component={UserHome} />
-                            </Switch>
-                        </>
+                        <User />
                     ) : (
                         <Switch>
                             {/* if not logged in, only available route is /login.
@@ -61,7 +34,6 @@ const App = ({ user }) => {
                             )}
                         </Switch>
                     )}
-
                     <ToastContainer autoClose={5000} hideProgressBar />
                 </div>
             </div>

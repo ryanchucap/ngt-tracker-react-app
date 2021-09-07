@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as apiTypes from "../../api/apiTypes";
-import * as authUtils from "../../auth/authUtils";
-import * as loginActions from "../../redux/actions/loginActions";
-import ApiLoader from "../common/ApiLoader";
-import NavButton from "../common/NavButton";
-import useWindowDimensions from "../common/useWindowDimensions";
+import * as apiTypes from "../../../api/apiTypes";
+import * as authUtils from "../../../auth/authUtils";
+import * as loginActions from "../../../redux/actions/loginActions";
+import ApiLoader from "../../common/ApiLoader";
+import NavButton from "../../common/NavButton";
+import useWindowDimensions from "../../common/useWindowDimensions";
 import "./admin-header.css";
 
 const AdminHeader = (props) => {

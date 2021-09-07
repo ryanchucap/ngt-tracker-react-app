@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router";
 import { toast } from "react-toastify";
 import { bindActionCreators } from "redux";
-import * as fileActions from "../../redux/actions/fileActions";
+import * as fileActions from "../../../redux/actions/fileActions";
 import "./home.css";
 
-const AdminHome = ({ actions }) => {
+const Home = ({ actions }) => {
     const history = useHistory();
     const [fileName, setFileName] = useState("");
     const [file, setFile] = useState();
@@ -86,4 +86,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminHome);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
