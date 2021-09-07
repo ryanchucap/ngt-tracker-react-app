@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router";
 import { ToastContainer } from "react-toastify";
@@ -14,13 +14,13 @@ import Login from "./components/login/Login.page";
 import UserHeader from "./components/user-header/UserHeader";
 import ViewEmployees from "./components/view-employees/ViewEmployees.page";
 
-class App extends Component {
-    render() {
-        return (
-            <div>
+const App = ({ user }) => {
+    return (
+        <>
+            <div className="main-content">
                 <Title />
                 <div className="container">
-                    {this.props.user === "admin" ? (
+                    {user === "admin" ? (
                         <>
                             <AdminHeader />
                             <Switch>
@@ -39,7 +39,7 @@ class App extends Component {
                                 <Route path="/" component={AdminHome} />
                             </Switch>
                         </>
-                    ) : this.props.user ? (
+                    ) : user ? (
                         <>
                             <UserHeader />
                             <Switch>
@@ -64,11 +64,11 @@ class App extends Component {
 
                     <ToastContainer autoClose={5000} hideProgressBar />
                 </div>
-                <Footer />
             </div>
-        );
-    }
-}
+            <Footer />
+        </>
+    );
+};
 
 const mapStateToProps = (state) => {
     return {

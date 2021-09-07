@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { bindActionCreators } from "redux";
 import * as authUtils from "../../auth/authUtils";
 import * as loginActions from "../../redux/actions/loginActions";
-import Title from "../common/Title";
 
 const Login = (props) => {
     const [credentials, setCredentials] = useState({});
@@ -32,7 +31,6 @@ const Login = (props) => {
         <>
             {!props.user ? (
                 <div style={{ display: "block", margin: "0 auto" }}>
-                    <Title />
                     <form
                         style={{ width: "400px", margin: "0 auto" }}
                         autoComplete="off"
