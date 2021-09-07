@@ -1,11 +1,9 @@
 -   Add fields to redux store at time of loading employees
 -   Allow admin to set data types of each column for proper sorting
-
+-   Allow direct load to /add and /edit pages
 -   Remove uploaded status from store, instead try to fetch
     -   employees from database on admin login -> if it fails, disable
     -   nav bar links, else, redirect to /employees
 -   Improve css around sort buttons
--   Find better loading spinner
--   Add 404 Page
 -   Replace all alerts with toasts
 -   Later: Add actual authorization implementation

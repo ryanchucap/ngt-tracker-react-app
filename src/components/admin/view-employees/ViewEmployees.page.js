@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import * as apiTypes from "../../../api/apiTypes";
 import * as employeeActions from "../../../redux/actions/employeeActions";
 import * as fileActions from "../../../redux/actions/fileActions";
+import ReloadButton from "../../common/ReloadButton";
 import EmployeeTable from "../employee-table/EmployeeTable";
 import "./view-employees.css";
 
@@ -68,15 +69,7 @@ class ViewEmployees extends Component {
                 ) : apiStatus.indexOf(apiTypes.LOAD_EMPLOYEES) > -1 ? (
                     <></>
                 ) : (
-                    <div className="container-reload">
-                        <h1>Unexpected Error: {error.message}</h1>
-                        <button
-                            className="btn btn-success btn-lg btn-reload"
-                            onClick={this.loadEmployees}
-                        >
-                            Reload
-                        </button>
-                    </div>
+                    <ReloadButton error={error} onClick={this.loadEmployees} />
                 )}
             </>
         );

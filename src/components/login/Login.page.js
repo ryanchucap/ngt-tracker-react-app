@@ -30,7 +30,13 @@ const Login = (props) => {
     return (
         <>
             {!props.user ? (
-                <div style={{ display: "block", margin: "0 auto" }}>
+                <div
+                    style={{
+                        display: "block",
+                        margin: "0 auto",
+                        paddingTop: "20px",
+                    }}
+                >
                     <form
                         style={{ width: "400px", margin: "0 auto" }}
                         autoComplete="off"

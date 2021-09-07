@@ -1,60 +1,104 @@
-import React, { useEffect, useState } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import { matchPath, useHistory, useLocation } from "react-router";
+import { matchPath } from "react-router";
+import { bindActionCreators } from "redux";
+import * as apiTypes from "../../../api/apiTypes";
+import * as employeeActions from "../../../redux/actions/employeeActions";
+import ReloadButton from "../../common/ReloadButton";
 import EmployeeForm from "../../forms/EmployeeForm";
 import "./edit-employee.css";
 
-const EditEmployee = ({ employees }) => {
-    const location = useLocation();
-    const history = useHistory();
-    const [employee, setEmployee] = useState(null);
+class EditEmployee extends Component {
+    state = { error: "", id: null, employee: null };
 
-    useEffect(() => {
-        // make sure we're on the right route, and get the id if so
-        const matcher = matchPath(location.pathname, {
+    componentDidMount() {
+        const matcher = matchPath(this.props.location.pathname, {
             path: "/employees/:id",
         });
 
-        // redirect if there aren't any employees to edit
-        if (!matcher || employees.length === 0) {
-            alert("Load employees before editing");
-            history.push("/");
+        if (!matcher) {
+            this.props.history.push("/"); // should never get here
         } else {
-            const emp = employees.filter(
-                (emp) => emp.id === Number.parseInt(matcher.params.id)
-            );
-            // if the id is valid, updated employee, otherwise redirect
-            if (emp.length > 0) {
-                setEmployee(emp[0]);
+            this.setState({
+                ...this.state,
+                id: Number.parseInt(matcher.params.id),
+            });
+            if (this.props.employees.length === 0) {
+                this.loadEmployees();
             } else {
-                alert("Employee does not exist with ID: " + matcher.params.id);
-                history.push("/employees");
+                this.selectEmployee(Number.parseInt(matcher.params.id));
             }
         }
-    }, [history, location, employees]);
+    }
 
-    // Use employee as initial value of EmployeeForm if one is selected
-    // After editing, send back to /employees
-    return (
-        <>
-            {employee ? (
-                <div className="container-form">
-                    <EmployeeForm
-                        values={employee}
-                        afterSubmit={() => history.push("/employees")}
-                    />
-                </div>
-            ) : (
-                <></>
-            )}
-        </>
-    );
-};
+    componentDidUpdate(prevProps) {
+        if (
+            this.props.employees.length > 0 &&
+            prevProps.employees.length === 0
+        ) {
+            this.selectEmployee(this.state.id);
+        }
+    }
+
+    selectEmployee = (id) => {
+        const emp = this.props.employees.filter((emp) => emp.id === id);
+        // if the id is valid, updated employee, otherwise redirect
+        if (emp.length > 0) {
+            this.setState({ ...this.state, employee: emp[0] });
+        } else {
+            alert("Employee does not exist with ID: " + id);
+            this.props.history.push("/employees");
+        }
+    };
+
+    loadEmployees = () => {
+        const { employees, apiStatus, actions } = this.props;
+        if (
+            employees.length === 0 &&
+            apiStatus.indexOf(apiTypes.LOAD_EMPLOYEES) === -1
+        ) {
+            actions.loadEmployees().catch((error) => this.setState({ error }));
+        }
+    };
+
+    render() {
+        const { error, employee } = this.state;
+        const { apiStatus, history } = this.props;
+        return (
+            <>
+                {employee ? (
+                    <div className="container-form">
+                        <EmployeeForm
+                            values={employee}
+                            afterSubmit={() => history.push("/employees")}
+                        />
+                    </div>
+                ) : apiStatus.indexOf(apiTypes.LOAD_EMPLOYEES) > -1 ? (
+                    <></>
+                ) : (
+                    <ReloadButton error={error} onClick={this.loadEmployees} />
+                )}
+            </>
+        );
+    }
+}
 
 const mapStateToProps = (state) => {
     return {
         employees: state.employees,
+        apiStatus: state.apiStatus,
     };
 };
 
-export default connect(mapStateToProps)(EditEmployee);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actions: {
+            loadEmployees: bindActionCreators(
+                employeeActions.loadEmployees,
+                dispatch
+            ),
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditEmployee);

@@ -46,3 +46,11 @@
     background-color: #1abc9c;
     font-family: "Playfair Display", serif;
 }
+
+.container-reload {
+    text-align: center;
+}
+
+.btn-reload {
+    width: 200px;
+}
