@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 import UserHeader from "./user-header/UserHeader";
 import Home from "./user-home/Home";
 
@@ -8,7 +8,8 @@ const User = () => {
         <>
             <UserHeader />
             <Switch>
-                <Route path="/" component={Home} />
+                <Route path="/" exact component={Home} />
+                <Redirect to="/" />
             </Switch>
         </>
     );

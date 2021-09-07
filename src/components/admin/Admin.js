@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 import AddEmployee from "./add-employee/AddEmployee.page";
 import AdminHeader from "./admin-header/AdminHeader";
 import Home from "./admin-home/Home";
@@ -14,7 +14,8 @@ const Admin = () => {
                 <Route path="/employees/add" component={AddEmployee} />
                 <Route path="/employees/:id" component={EditEmployee} />
                 <Route path="/employees" component={ViewEmployees} />
-                <Route path="/" component={Home} />
+                <Route path="/" exact component={Home} />
+                <Redirect to="/" />
             </Switch>
         </>
     );
