@@ -11,11 +11,11 @@ import TableBody from "./TableBody";
 import TableFooter from "./TableFooter";
 import TableHead from "./TableHead";
 
-const EmployeeList = ({ employees, actions }) => {
+const EmployeeList = ({ fields, employees, actions }) => {
     const history = useHistory();
 
     const [page, setPage] = useState(1);
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState({ term: "", column: "-1" });
     const [sortField, setSortField] = useState({ field: null, order: 1 });
 
     const entriesPerPage = 10;
@@ -37,22 +37,18 @@ const EmployeeList = ({ employees, actions }) => {
             );
     };
 
-    const handleSearchChange = (event) => {
-        setSearch(event.target.value);
-        setPage(1);
-    };
-
     const searchFilter = (emp) => {
-        if (search === "") {
+        if (search.term === "") {
             return true;
         } else {
-            for (let k of Object.keys(emp)) {
+            const searchFields =
+                search.column === "-1" ? fields : [search.column];
+            for (let k of searchFields) {
                 if (
-                    k !== "id" &&
                     emp[k]
                         .toString()
                         .toLowerCase()
-                        .includes(search.toLowerCase())
+                        .includes(search.term.toLowerCase())
                 ) {
                     return true;
                 }
@@ -76,9 +72,14 @@ const EmployeeList = ({ employees, actions }) => {
         setPage(1);
     };
 
+    const handleSearchChange = (event) => {
+        setSearch({ ...search, [event.target.name]: event.target.value });
+        setPage(1);
+    };
+
     const handleSearchClear = (event) => {
         event.preventDefault();
-        setSearch("");
+        setSearch({ term: "", column: "-1" });
         setPage(1);
     };
 
@@ -92,6 +93,7 @@ const EmployeeList = ({ employees, actions }) => {
         <>
             <hr />
             <SearchBar
+                fields={fields}
                 search={search}
                 handleSearchChange={handleSearchChange}
                 handleSearchClear={handleSearchClear}
@@ -104,12 +106,13 @@ const EmployeeList = ({ employees, actions }) => {
                     <div className="table-container">
                         <table className="table-scrolled">
                             <TableHead
-                                fields={Object.keys(employees[0])}
+                                fields={fields}
                                 handleSortChange={handleSortChange}
                                 sortField={sortField}
                             />
 
                             <TableBody
+                                fields={fields}
                                 empList={employeesFiltered.slice(
                                     (page - 1) * entriesPerPage,
                                     page * entriesPerPage
@@ -139,8 +142,13 @@ const EmployeeList = ({ employees, actions }) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
+    let fields = [];
+    if (state.employees.length > 0) {
+        fields = Object.keys(state.employees[0]).filter((k) => k !== "id");
+    }
     return {
         employees: state.employees,
+        fields: fields,
     };
 };
 

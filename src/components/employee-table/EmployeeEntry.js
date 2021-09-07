@@ -1,7 +1,7 @@
 import React from "react";
 import "./employee-table.css";
 
-const EmployeeEntry = ({ employee, handleDelete, handleEdit }) => {
+const EmployeeEntry = ({ fields, employee, handleDelete, handleEdit }) => {
     return (
         <tr>
             <th className="container-modify cell">
@@ -18,14 +18,11 @@ const EmployeeEntry = ({ employee, handleDelete, handleEdit }) => {
                     DELETE
                 </button>
             </th>
-            {Object.keys(employee).map(
-                (f) =>
-                    f !== "id" && (
-                        <td key={f} className="cell">
-                            {employee[f]}
-                        </td>
-                    )
-            )}
+            {fields.map((f) => (
+                <td key={f} className="cell">
+                    {employee[f]}
+                </td>
+            ))}
         </tr>
     );
 };

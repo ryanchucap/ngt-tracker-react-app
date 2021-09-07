@@ -12,17 +12,15 @@ const TableHead = ({ fields, handleSortChange, sortField }) => {
                 >
                     MODIFY
                 </th>
-                {fields
-                    .filter((f) => f !== "id")
-                    .map((f) => (
-                        <th key={f} className="cell">
-                            {f.toUpperCase()}
-                            <SortButton
-                                onChange={(order) => handleSortChange(f, order)}
-                                deselected={f !== sortField.field}
-                            />
-                        </th>
-                    ))}
+                {fields.map((f) => (
+                    <th key={f} className="cell">
+                        {f.toUpperCase()}
+                        <SortButton
+                            onChange={(order) => handleSortChange(f, order)}
+                            deselected={f !== sortField.field}
+                        />
+                    </th>
+                ))}
             </tr>
         </thead>
     );
