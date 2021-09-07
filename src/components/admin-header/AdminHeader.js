@@ -49,8 +49,10 @@ const AdminHeader = (props) => {
                     <tbody>
                         {width > 1000 ? (
                             <tr>
-                                {navButtons.map((b) => (
-                                    <td className="fit-content">{b}</td>
+                                {navButtons.map((b, i) => (
+                                    <td key={i} className="fit-content">
+                                        {b}
+                                    </td>
                                 ))}
 
                                 <td className="admin-header-logout">
@@ -59,8 +61,8 @@ const AdminHeader = (props) => {
                             </tr>
                         ) : (
                             <>
-                                {navButtons.map((b) => (
-                                    <tr>
+                                {navButtons.map((b, i) => (
+                                    <tr key={i}>
                                         <td className="fit-content">{b}</td>
                                     </tr>
                                 ))}

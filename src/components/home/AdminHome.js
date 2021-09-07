@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import * as fileActions from "../../redux/actions/fileActions";
 import "./home.css";
 
-const AdminHome = (props) => {
+const AdminHome = ({ actions }) => {
     const history = useHistory();
     const [fileName, setFileName] = useState("");
     const [file, setFile] = useState();
@@ -28,14 +28,11 @@ const AdminHome = (props) => {
         formData.append("name", fileName);
         formData.append("file", file);
 
-        let proceed = true;
-        if (props.uploaded) {
-            proceed = window.confirm(
-                "Warning: Changes to previous file will be lost. Proceed?"
-            );
-        }
+        const proceed = window.confirm(
+            "Warning: Any existing data will be overwritten. Proceed?"
+        );
         if (proceed) {
-            props.actions
+            actions
                 .uploadFile(formData)
                 .then(() => {
                     history.push("/employees");
@@ -78,9 +75,7 @@ const AdminHome = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    return {
-        uploaded: state.file.uploaded,
-    };
+    return {};
 };
 
 const mapDispatchToProps = (dispatch) => {

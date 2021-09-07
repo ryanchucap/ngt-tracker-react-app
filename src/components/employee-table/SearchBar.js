@@ -9,7 +9,7 @@ const SearchBar = ({
 }) => {
     return (
         <div style={{ width: "100%" }}>
-            <form className="form-inline search-form" autocomplete="off">
+            <form className="form-inline search-form" autoComplete="off">
                 <div className="input-group">
                     <input
                         name="term"
