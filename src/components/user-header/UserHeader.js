@@ -1,12 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import * as apiTypes from "../../api/apiTypes";
 import * as authUtils from "../../auth/authUtils";
-import * as loginActions from "../../redux/actions/loginActions";
 import ApiLoader from "../common/ApiLoader";
 
-const UserHeader = (props) => {
+const UserHeader = ({ apiStatus }) => {
     const loadingMessage = {
         [apiTypes.LOAD_EMPLOYEES]: "Loading Profile...",
         [apiTypes.UPDATE_EMPLOYEE]: "Updating Profile...",
@@ -33,7 +31,7 @@ const UserHeader = (props) => {
             {Object.keys(loadingMessage).map((key, i) => (
                 <ApiLoader
                     key={i}
-                    apiStatus={props.apiStatus}
+                    apiStatus={apiStatus}
                     apiName={key}
                     message={loadingMessage[key]}
                 />
@@ -45,16 +43,12 @@ const UserHeader = (props) => {
 const mapStateToProps = (state, ownProps) => {
     return {
         apiStatus: state.apiStatus,
-        uploaded: state.file.uploaded,
-        user: state.login,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: {
-            logout: bindActionCreators(loginActions.logout, dispatch),
-        },
+        actions: {},
     };
 };
 
