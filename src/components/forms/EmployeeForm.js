@@ -49,20 +49,17 @@ const EmployeeForm = ({ fields, values, actions, afterSubmit }) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-    let keys = null;
-    let fields = null;
+    let fields = [];
     if (state.employees.length > 0) {
-        keys = Object.keys(state.employees[0]);
+        const keys = Object.keys(state.employees[0]).filter((k) => k !== "id");
         fields = [];
         for (let k of keys) {
-            if (k !== "id") {
-                fields.push({
-                    colName: k,
-                    formLabel: k.toUpperCase(),
-                    placeholder: "Enter " + k.toLowerCase(),
-                    isRequired: true,
-                });
-            }
+            fields.push({
+                colName: k,
+                formLabel: k.toUpperCase(),
+                placeholder: "Enter " + k.toLowerCase(),
+                isRequired: true,
+            });
         }
     }
     return { fields };

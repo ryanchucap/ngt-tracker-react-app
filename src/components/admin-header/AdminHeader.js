@@ -7,6 +7,7 @@ import * as loginActions from "../../redux/actions/loginActions";
 import ApiLoader from "../common/ApiLoader";
 import NavButton from "../common/NavButton";
 import useWindowDimensions from "../common/useWindowDimensions";
+import "./admin-header.css";
 
 const AdminHeader = (props) => {
     // loading message for each api call -> multiple will display
@@ -22,75 +23,48 @@ const AdminHeader = (props) => {
 
     const { width } = useWindowDimensions();
 
+    const navButtons = [
+        <NavButton path="/" exact label="Home" />,
+        <NavButton
+            path="/employees"
+            exact
+            label="Employees"
+            disabled={!props.uploaded}
+        />,
+        <NavButton
+            path="/employees/add"
+            exact
+            label="Add Employee"
+            disabled={!props.uploaded}
+        />,
+    ];
+
     // Title and Navigation Bar, with links disabled
     // if there is no data available to view (no file uploaded yet)
     return (
-        <div style={{ textAlign: "center" }}>
+        <div className="admin-header-container">
             <hr />
             <nav>
-                <table style={{ width: "100%" }}>
+                <table className="admin-header-nav-table">
                     <tbody>
                         {width > 1000 ? (
                             <tr>
-                                <td style={{ width: "fit-content" }}>
-                                    <NavButton path="/" exact label="Home" />
-                                </td>
-                                <td style={{ width: "fit-content" }}>
-                                    <NavButton
-                                        path="/employees"
-                                        exact
-                                        label="Employees"
-                                        disabled={!props.uploaded}
-                                    />
-                                </td>
-                                <td style={{ width: "fit-content" }}>
-                                    <NavButton
-                                        path="/employees/add"
-                                        exact
-                                        label="Add Employee"
-                                        disabled={!props.uploaded}
-                                    />
-                                </td>
-                                <td
-                                    style={{
-                                        width: "100%",
-                                        textAlign: "right",
-                                    }}
-                                >
+                                {navButtons.map((b) => (
+                                    <td className="fit-content">{b}</td>
+                                ))}
+
+                                <td className="admin-header-logout">
                                     <LogoutButton onLogout={authUtils.logout} />
                                 </td>
                             </tr>
                         ) : (
                             <>
-                                <tr>
-                                    <td style={{ width: "fit-content" }}>
-                                        <NavButton
-                                            path="/"
-                                            exact
-                                            label="Home"
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style={{ width: "fit-content" }}>
-                                        <NavButton
-                                            path="/employees"
-                                            exact
-                                            label="Employees"
-                                            disabled={!props.uploaded}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style={{ width: "fit-content" }}>
-                                        <NavButton
-                                            path="/employees/add"
-                                            exact
-                                            label="Add Employee"
-                                            disabled={!props.uploaded}
-                                        />
-                                    </td>
-                                </tr>
+                                {navButtons.map((b) => (
+                                    <tr>
+                                        <td className="fit-content">{b}</td>
+                                    </tr>
+                                ))}
+
                                 <tr>
                                     <td>
                                         <LogoutButton
@@ -119,12 +93,8 @@ const AdminHeader = (props) => {
 const LogoutButton = ({ onLogout }) => {
     return (
         <button
-            className="btn btn-lg btn-outline-danger"
+            className="btn btn-lg btn-outline-danger logout"
             onClick={onLogout}
-            style={{
-                width: "200px",
-                margin: "10px 10px",
-            }}
         >
             Logout
         </button>

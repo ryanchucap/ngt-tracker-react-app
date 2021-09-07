@@ -8,7 +8,7 @@ const AddEmployee = () => {
     // display EmployeeForm with no initial values (values={})
     // if add is successful, redirect to /employees
     return (
-        <div className="container-form">
+        <div className="add-employee-form-container">
             <EmployeeForm
                 values={{}}
                 afterSubmit={() => history.push("/employees")}

@@ -3,16 +3,17 @@ import axios from "axios";
 const baseUrl = "http://localhost:5000/files/";
 
 const api = axios.create();
+if (process.env.REACT_APP_NODE_ENV === "development") {
+    api.interceptors.request.use((request) => {
+        console.log("Starting Request", JSON.stringify(request, null, 2));
+        return request;
+    });
 
-api.interceptors.request.use((request) => {
-    console.log("Starting Request", JSON.stringify(request, null, 2));
-    return request;
-});
-
-api.interceptors.response.use((response) => {
-    console.log("Response:", JSON.stringify(response, null, 2));
-    return response;
-});
+    api.interceptors.response.use((response) => {
+        console.log("Response:", JSON.stringify(response, null, 2));
+        return response;
+    });
+}
 
 export function uploadFile(file) {
     return new Promise((resolve, reject) => {

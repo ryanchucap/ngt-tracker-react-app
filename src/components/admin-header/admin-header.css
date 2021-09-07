@@ -1,0 +1,21 @@
+.admin-header-container {
+    text-align: center;
+}
+
+.admin-header-nav-table {
+    width: 100%;
+}
+
+td.admin-header-logout {
+    width: 100%;
+    text-align: right;
+}
+
+button.logout {
+    width: 200px;
+    margin: 10px 10px;
+}
+
+.fit-content {
+    width: fit-content;
+}
