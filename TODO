@@ -1,7 +1,5 @@
--   Redo pagination component so it works with variable screen sizes
 -   Add fields to redux store at time of loading employees
 -   Allow admin to set data types of each column for proper sorting
--   Add css to title and header components
 
 -   Remove uploaded status from store, instead try to fetch
     -   employees from database on admin login -> if it fails, disable
