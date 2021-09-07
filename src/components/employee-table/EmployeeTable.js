@@ -11,7 +11,7 @@ import TableBody from "./TableBody";
 import TableFooter from "./TableFooter";
 import TableHead from "./TableHead";
 
-const EmployeeList = ({ fields, employees, actions }) => {
+const EmployeeTable = ({ fields, employees, actions }) => {
     const history = useHistory();
 
     const [page, setPage] = useState(1);
@@ -163,4 +163,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeList);
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeTable);
